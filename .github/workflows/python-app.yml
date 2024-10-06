@@ -4,8 +4,8 @@ from telegram.ext import Updater, CallbackContext, CommandHandler
 token = '7881094347:AAHUtOi70ZLuWcPwSyvN_XWU0Uvpny-JZRg'
 
 
-def start(update: Update, context: callbackContext):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Let's start!")
+update.message.reply_text("Let's start!")
+  context.bot.send_message(chat_id=update.effective_chat.id, text="Let's start!")
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Updater, CallbackContext, CommandHandler, CallbackQueryHandler
