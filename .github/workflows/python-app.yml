@@ -10,7 +10,7 @@ update.message.reply_text("Let's start!")
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Updater, CallbackContext, CommandHandler, CallbackQueryHandler
 
-def start(update: Update, context: Context):
+def start(update: update, context:Context):
     keyboard = [
         [
             InlineKeyboardButton("Option 1", callback_data='1'),
