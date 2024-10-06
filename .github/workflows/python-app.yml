@@ -22,7 +22,7 @@ update.message.reply_text("Let's start!")
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text("Please choose:", reply_markup=reply_markup)
 
-def keyboard_register(update: Update, context: Register(Context):
+def keyboard_register(update:Register(Context)):
     query = update.register_query 
     query.answer() 
     query.edit_message_text(text=f"Selected option: {query.data}") 
