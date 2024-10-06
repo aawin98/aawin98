@@ -1,31 +1,39 @@
-from telegram import Update
-from telegram.ext import Updater, CallbackContext, CommandHandler
-
-token = '7881094347:AAHUtOi70ZLuWcPwSyvN_XWU0Uvpny-JZRg'
-
-
-update.message.reply_text("Let's start!")
-  context.bot.send_message(chat_id=update.effective_chat.id, text="Let's start!")
-
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import Updater, CallbackContext, CommandHandler, CallbackQueryHandler
-
-update.message.reply_text("Let's start!")
-    keyboard = [
-        [
-            InlineKeyboardButton("Option 1", callback_data='1'),
-            InlineKeyboardButton("Option 2", callback_data='2'),
-        ],
-        [
-            InlineKeyboardButton("Option 3", callback_data='3'),
-        ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    update.message.reply_text("Please choose:", reply_markup=reply_markup)
-
-if name == '__main__':
-    updater = Updater(token=token, use_context=True)
-    start_handler = CommandHandler('start', start)
-    updater.dispatcher.add_handler(start_handler)
-    updater.dispatcher.add_handler(CallbackQueryHandler(keyboard_callback)) 
-    updater.start_polling()
-    updater.idle()
+# Importing required libraries 
+from aiogram import Bot, Dispatcher, executor, types 
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
+  
+# Put the token that you received from BotFather in the quotes 
+bot = Bot(token='7881094347:AAHUtOi70ZLuWcPwSyvN_XWU0Uvpny-JZRg') 
+  
+# Initializing the dispatcher object 
+dp = Dispatcher(bot) 
+  
+# Defining and adding buttons 
+button1 = InlineKeyboardButton(text="button1", callback_data="In_First_button") 
+button2 = InlineKeyboardButton( 
+    text="button2", callback_data="In_Second_button") 
+keyboard_inline = InlineKeyboardMarkup().add(button1, button2) 
+  
+# Message handler for the /button1 command 
+  
+  
+@dp.message_handler(commands=['start']) 
+async def check(message: types.Message): 
+    await message.reply("hi! how are you", reply_markup=keyboard_inline) 
+  
+# Callback query handler for the inline keyboard buttons 
+  
+  
+@dp.callback_query_handler(text=["In_First_button", "In_Second_button"]) 
+async def check_button(call: types.CallbackQuery): 
+  
+    # Checking which button is pressed and respond accordingly 
+    if call.data == "In_First_button": 
+        await call.message.answer("Hi! This is the first inline keyboard button.") 
+    if call.data == "In_Second_button": 
+        await call.message.answer("Hi! This is the second inline keyboard button.") 
+    # Notify the Telegram server that the callback query is answered successfully 
+    await call.answer() 
+  
+# Start the bot 
+executor.start_polling(dp)
