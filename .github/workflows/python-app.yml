@@ -10,7 +10,7 @@ def start(update: Update, context: callbackContext):
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Updater, CallbackContext, CommandHandler, CallbackQueryHandler
 
-def start(update: Update, context: CallbackContext):
+def start(update: Update, context: Context):
     keyboard = [
         [
             InlineKeyboardButton("Option 1", callback_data='1'),
